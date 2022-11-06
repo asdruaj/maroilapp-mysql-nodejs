@@ -10,6 +10,7 @@ const session = require("express-session");
 const bcrypt = require("bcryptjs");
 const flash = require("connect-flash");
 const MySQLEvents = require('@rodrigogs/mysql-events');
+const MemoryStore = require('memorystore')(session)
 
 var indexRouter = require("./routes/index");
 var usersRouter = require("./routes/users");
@@ -37,6 +38,9 @@ app.use(
   session({
     resave: true,
     rolling: true,
+    store: new MemoryStore({
+      checkPeriod: 86400000 // prune expired entries every 24h
+    }),
     saveUninitialized: false,
     secret: "moi-pass",
     //cookie expires after 1 hour of inactivity
