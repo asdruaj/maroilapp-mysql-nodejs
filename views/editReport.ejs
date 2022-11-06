@@ -34,7 +34,7 @@
             <label for="equipment">Equipo</label>
             <select name="equipment" id="equipment" >
         
-              <option disabled selected style="display: none;" value="<%=reports.equipment%>"><%=reports.equipment%></option>
+              <option  selected style="display: none;" value="<%=reports.equipment%>"><%=reports.equipment%></option>
               <% for( let i = 0; i < equipment.length; i++ ) { %>
               <option class="equipmentOptions" data-equipmentId="<%=equipment[i].id %>" value="<%=equipment[i].equipmentName%>"><%=equipment[i].equipmentName%></option>
               <% } %>
@@ -44,7 +44,7 @@
           <div class="control-container">
             <label for="specialty">Tipo de Falla</label>
             <select name="specialty" id="specialty">
-              <option disabled selected style="display: none;" value="<%=reports.specialty%>"><%=reports.specialty%></option>
+              <option  selected style="display: none;" value="<%=reports.specialty%>"><%=reports.specialty%></option>
               <% for( let i = 0; i < specialty.length; i++ ) { %>
               <option style="display: none;" class="specialtyOptions" data-specialtyId="<%=specialty[i].id %>" data-specEquipmentId="<%=specialty[i].equipmentId %>" value="<%=specialty[i].specialtyName%>"><%=specialty[i].specialtyName%></option>
               <% } %>
@@ -54,7 +54,7 @@
           <div class="control-container">
             <label for="failure">Falla</label>
             <select name="failure" id="failure">
-              <option  disabled selected style="display: none;" value="<%=reports.failure%>"><%=reports.failure%></option>
+              <option   selected style="display: none;" value="<%=reports.failure%>"><%=reports.failure%></option>
               <% for( let i = 0; i < failure.length; i++ ) { %>
               <option style="display: none;" class="failureOptions" data-failureSpecialtyId="<%=failure[i].specialtyId %>" value="<%=failure[i].failure%>"><%=failure[i].failure%></option>
               <% } %>
