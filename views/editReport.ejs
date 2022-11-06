@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Editar Reporte</title>
+
+  <link rel="stylesheet" href="/stylesheets/DashboardStyle.css">
+  <link rel="stylesheet" href="/stylesheets/style.css">
+  <link rel="stylesheet" href="/stylesheets/createEditReports.css">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp" rel="stylesheet">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  <link rel = "icon" href = "/images/logo.png" type = "image/x-icon">
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+</head>
+
+
+<body>
+
+  <div class="create-container">
+    <%- include('layouts/sidebar') %>
+
+    <div class="middle">
+      <h1>Actualizar Reporte</h1>
+
+      <form method="post" action="../update/" id="form">
+      <input type = "hidden" name="id" value="<%=reports.id%>">
+
+
+      <div class="grid">
+        <div class="equipmentDetails">
+          <div class="control-container">
+            <label for="equipment">Equipo</label>
+            <select name="equipment" id="equipment" >
+        
+              <option disabled selected style="display: none;" value="<%=reports.equipment%>"><%=reports.equipment%></option>
+              <% for( let i = 0; i < equipment.length; i++ ) { %>
+              <option class="equipmentOptions" data-equipmentId="<%=equipment[i].id %>" value="<%=equipment[i].equipmentName%>"><%=equipment[i].equipmentName%></option>
+              <% } %>
+            </select>
+            <!-- <input id="equipment" class="form-control" type="text" name="equipment" value="<%=reports.equipment%>"> -->
+          </div>
+          <div class="control-container">
+            <label for="specialty">Tipo de Falla</label>
+            <select name="specialty" id="specialty">
+              <option disabled selected style="display: none;" value="<%=reports.specialty%>"><%=reports.specialty%></option>
+              <% for( let i = 0; i < specialty.length; i++ ) { %>
+              <option style="display: none;" class="specialtyOptions" data-specialtyId="<%=specialty[i].id %>" data-specEquipmentId="<%=specialty[i].equipmentId %>" value="<%=specialty[i].specialtyName%>"><%=specialty[i].specialtyName%></option>
+              <% } %>
+            </select>
+            <!-- <input id="specialty" class="form-control" type="text" name="specialty" value="<%=reports.specialty%>"> -->
+          </div>
+          <div class="control-container">
+            <label for="failure">Falla</label>
+            <select name="failure" id="failure">
+              <option  disabled selected style="display: none;" value="<%=reports.failure%>"><%=reports.failure%></option>
+              <% for( let i = 0; i < failure.length; i++ ) { %>
+              <option style="display: none;" class="failureOptions" data-failureSpecialtyId="<%=failure[i].specialtyId %>" value="<%=failure[i].failure%>"><%=failure[i].failure%></option>
+              <% } %>
+            </select>
+            <!-- <input id="failure" class="form-control" type="text" name="failure" value="<%=reports.failure%>"> -->
+          </div>
+        </div>
+        <div class="reportTimeDetails">
+          <div class="control-container">
+            <%let startDate = new Date(reports.startTime)%>
+            <%const startOffset = startDate.getTimezoneOffset()%>
+            <%startDate = new Date(startDate.getTime() - (startOffset*60*1000))%>
+            <%var startIsoDate = startDate.toISOString().split('Z')[0]%>
+            <label for="startTime">Inicio</label>
+            <input id="startTime" class="form-control" type="datetime-local" name="startTime" value="<%=startIsoDate%>" required>
+          </div>
+          <div class="control-container">
+            <%if (reports.endTime !== '0000-00-00 00:00:00.000000') {%>
+              <%let endDate = new Date(reports.endTime)%>
+              <%const endOffset = endDate.getTimezoneOffset()%>
+              <%endDate = new Date(endDate.getTime() - (endOffset*60*1000))%>
+              <%var endIsoDate = endDate.toISOString().split('Z')[0]%>
+            <label for="endTime">Fin</label>
+            <input id="endTime" class="form-control" type="datetime-local" name="endTime" value="<%=endIsoDate%>" >
+            <% }else{ %>
+              <label for="endTime">Fin</label>
+              <input id="endTime" class="form-control" type="datetime-local" name="endTime"  >
+              <% } %>
+          </div>
+          <div class="control-container">
+            <label for="timeElapsed">Tiempo Transcurrido</label>
+            <input readonly id="timeElapsed" class="form-control" type="text" name="timeElapsed" value="<%=reports.timeElapsed%>">
+          </div>
+        </div>
+        <div class="reportsDetails">
+          <div class="control-container">
+            <label for="report">Reporte</label>
+            <textarea id="report" class="form-control" name="report" cols="40" rows="10"><%=reports.report%></textarea>
+          </div>
+          <div class="control-container">
+            <label for="actionsTaken">Acciones Tomadas</label>
+            <textarea id="actionsTaken" class="form-control" cols="40" rows="5" name="actionsTaken"><%=reports.actionsTaken%></textarea>
+          </div>
+          <div class="control-container">
+            <label for="status">Estado</label>
+            <input id = "statusHidden" class="form-control" type="hidden" name="status" value="0">
+            <% if (reports.status == 1) { %>
+              <div class="switch-container">
+                <label>Abierto</label>
+                <label class="switch">
+                  <input id="status" class="form-control" type="checkbox" name="status" value = "1" checked>
+                  <span class="slider round"></span>
+                </label>
+                <label>Cerrado</label>
+              </div>
+            <% } else {%>
+              <div class="switch-container">
+                <label>Abierto</label>
+                <label class="switch">
+                <input id="status" class="form-control" type="checkbox" name="status" value = "1" >
+                <span class="slider round"></span>
+                        </label>
+                <label>Cerrado</label>
+              </div>
+              <% } %>
+        
+          </div>
+          <button class="button" type="submit"><span>Actualizar</span></button>
+        </div>
+      </div>
+      </form>
+    </div>
+
+  </div>
+
+  <div class="right">
+    <div class="top">
+      <button id="menu-btn">
+        <span class="material-icons-sharp">menu</span>
+      </button>
+    </div>
+  
+<script src="/javascripts/createReports.js"></script>
+</body>
+</html>

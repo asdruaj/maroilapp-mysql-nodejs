@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Equipos</title>
+
+    <link rel="stylesheet" href="/stylesheets/DashboardStyle.css" />
+    <link rel="stylesheet" href="/stylesheets/style.css" />
+    <link rel="stylesheet" href="/stylesheets/equipmentStyle.css" />
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+    />
+    <link rel = "icon" href = "/images/logo.png" type = "image/x-icon">
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  </head>
+
+  <body>
+    
+    <main>
+      <div class="equipment-container">
+        <%- include('layouts/sidebar') %>
+        <div class="left-table">
+          <div class="table-controls">
+            <form method ="post" action="/equipment">
+              <input type="text" name="equipmentName" required />
+              <button class="bEdit editEquipment" type="submit"><i class="material-icons add">add</i></button>
+            </form>
+            
+          </div>
+          <table id="equipment-table">
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Equipo</th>
+                <th>Acciones</th>
+                <th style="display:none"></th>
+              </tr>
+            </thead>
+            <tbody id="equipment-body">
+              <% for( let i = 0; i < equipment.length; i++ ) { %>
+                <tr tabindex="0">
+                  <td><%= equipment[i].id %></td>
+                  <td><%= equipment[i].equipmentName %></td>
+                  <td>
+
+                      <button class="bEdit editEquipment" type="submit"><i class="material-icons edit">edit</i></button>
+
+                    <form method= "post" action="/equipment/deleteEquipment/<%=equipment[i].id%>">
+                      <button type="submit"><i class="material-icons delete">delete</i></button>
+                    </form>
+                  </td>
+                </tr>
+              <% } %>
+            </tbody>
+          </table>
+        </div>
+        <div class="middle-table">
+          <div class="table-controls">
+            <form method="post" action="/equipment/specialty" id="specialtyForm">
+              <input type="text" name="specialtyName" required />
+              <input type="hidden" name="equipmentId" value="1" id="equipmentId">
+              <button class="bEdit editEquipment" type="submit"><i class="material-icons add">add</i></button>
+            </form>
+            
+          </div>
+          <table id="specialty-table">
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Tipo de Falla</th>
+                <th>Acciones</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% for( let i = 0; i < specialty.length; i++ ) { %>
+                <tr tabindex="1" style="display: none">
+                  <td><%= specialty[i].id %></td>
+                  <td><%= specialty[i].specialtyName %></td>
+                  <td style="display: none;"><%= specialty[i].equipmentId %></td>
+                  <td >
+  
+                      <button class="bEdit editSpecialty" type="submit"><i class="material-icons edit">edit</i></button>
+
+                    <form method= "post" action="/equipment/deleteSpecialty/<%=specialty[i].id%>">
+                      <button type="submit"><i class="material-icons delete">delete</i></button>
+                    </form>
+                  </td>
+                </tr>
+              <% } %> 
+            </tbody>
+          </table>
+        </div>
+        <div class="right-table">
+          <div class="table-controls">
+            <form action="/equipment/failure" method="post" id="failureForm">
+              <input type="text" name="failure" id="failureText" required/>
+              <input type="hidden" name="equipmentId" id="specEquipmentId">
+              <input type="hidden" name="specialtyId" id="specialtyId">
+              <button class="bEdit editEquipment" type="submit"><i class="material-icons add">add</i></button>
+            </form>
+            
+          </div>
+          <table id="failure-table">
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Falla</th>
+                
+                <th>Acciones</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% for( let i = 0; i < failure.length; i++ ) { %>
+                <tr tabindex="2" style="display: none">
+                  <td><%= failure[i].id %></td>
+                  <td><%= failure[i].failure %></td>
+                  <td style="display:none"><%= failure[i].specialtyId %></td>
+                  <td style="display:none"><%= failure[i].equipmentId %></td>
+                  <td>
+
+                      <button class="bEdit editFailure" type="submit"><i class="material-icons edit">edit</i></button>
+  
+                    <form method= "post" action="/equipment/deleteFailure/<%=failure[i].id%>">
+                      <button type="submit"><i class="material-icons delete">delete</i></button>
+                    </form>
+                  </td>
+                </tr>
+              <% } %>
+            </tbody>
+          </table>
+        </div>
+        
+        <div class="right">
+          <div class="top">
+            <button id="menu-btn">
+              <span class="material-icons-sharp">menu</span>
+            </button>
+          </div>
+        </div>
+        <div id="myModal" class="modal">
+
+          <!-- Modal content -->
+          <div class="modal-content">
+            <div class="modal-header">
+              <span id ="close" class="close">&times;</span>
+              <h2 id="modalHeader"></h2>
+            </div>
+            <div class="modal-body" id="modalBody">
+              <form method="post" id="editEquipmentForm" style="display: none">
+                <input type="hidden" name="id" id="equipmentIdForm" value="">
+                <input type="text" name="equipmentName" id="equipmentInput" class="equipmentInput">
+                <input class="modalSubmit" type="submit" >
+              </form>
+
+              <form method="post" id="editSpecialtyForm" style="display: none">
+                <input type="hidden" id="specialtyIdForm" name = "id">
+                <input type="text" name = "specialtyName" id="specialtyInput" class="equipmentInput">
+                <input class="modalSubmit" type="submit" >
+              </form>
+
+              <form method="post" id="editFailureForm" style="display: none">
+                <input type="hidden" name="id" id="failureIdForm">
+                <input type="text" name="failure" id="failureInput" class="equipmentInput">
+                <input class="modalSubmit" type="submit" >
+              </form>
+            </div>
+            <div class="modal-footer">
+              <h3>MarOil Inc.</h3>
+            </div>
+          </div>
+        
+        </div>
+      </div>
+    </main>
+
+    <script src="/javascripts/equipment.js"></script>
+  </body>
+</html>

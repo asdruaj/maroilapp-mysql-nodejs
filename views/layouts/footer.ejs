@@ -1,0 +1,39 @@
+<script src="../javascripts/reports.js"></script>
+<script>
+  const dt = new DataTable('#datatable',[
+    {
+      id: 'bAdd',
+      text: 'agregar',
+      icon: 'add_circle',
+      action: function(){
+        // codigo callback
+        window.location.href = "/reports/create";
+        console.log("añadir")
+      }
+    },
+    {
+      id: 'bDelete',
+      text: 'eliminar',
+      icon: 'delete',
+      action: function(){
+        
+const form = document.getElementById('bDelete-form')
+form.addEventListener('click', () =>{
+  try {
+    if (confirm("Se eliminarán los reportes seleccionados. ¿Desea continuar?") == true) {
+      const res = axios.post(`/reports/delete`, dt.selectedId);
+      alert('Eliminando datos...')
+    }
+  } catch (error) {
+    alert(error)
+  }
+  
+});
+      }
+    }
+  ]);
+
+    dt.parse();
+</script>
+</body>
+</html>

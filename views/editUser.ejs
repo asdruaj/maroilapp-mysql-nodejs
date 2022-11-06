@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Editar Usuario</title>
+
+  <link rel="stylesheet" href="/stylesheets/DashboardStyle.css">
+  <link rel="stylesheet" href="/stylesheets/style.css">
+  <link rel="stylesheet" href="/stylesheets/createEditReports.css">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp" rel="stylesheet">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  <link rel = "icon" href = "/images/logo.png" type = "image/x-icon">
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+</head>
+
+
+<body>
+
+  <div class="create-container">
+    <%- include('layouts/sidebar') %>
+
+    <div class="middle">
+      <h1>Nuevo Usuario</h1>
+      <form method="post" action="../update/" id="form">
+      <input type = "hidden" name="id" value="<%=users.id%>">
+      <div class="control-container">
+        <label for="name">Nombre Completo</label>
+        <input id="name" class="form-control" type="text" name="name" value="<%=users.name%>">
+      </div>
+      <div class="control-container">
+        <label for="username">Usuario</label>
+        <input id="username" class="form-control" type="text" name="username" value="<%=users.username%>">
+      </div>
+      <div class="control-container">
+        <label for="password">Contraseña</label>
+        <input id="password" class="form-control" type="text" name="password">
+      </div>
+      <div class="control-container">
+        <label for="role">Rol</label>
+        <select name="role" id="role" class="form-control">
+          <% if (users.role == "Administrador") { %>
+            <option value="Administrador" selected>Administrador</option>
+            <option value="Regular">Regular</option>
+          <% }else{ %>
+          <option value="Regular" selected>Regular</option>
+          <option value="Administrador" >Administrador</option>
+          <% } %>
+        </select>
+      </div>
+      <button class="button" type="submit"><span>Enviar</span></button>
+      </form>
+    </div>
+
+  </div>
+
+  <div class="right">
+    <div class="top">
+      <button id="menu-btn">
+        <span class="material-icons-sharp">menu</span>
+      </button>
+    </div>
+  
+
+<script src="/javascripts/createReports.js"></script>
+</body>
+</html>

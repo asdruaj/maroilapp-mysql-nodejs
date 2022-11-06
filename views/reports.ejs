@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Reportes</title>
+
+  <link rel="stylesheet" href="/stylesheets/DashboardStyle.css">
+  <link rel="stylesheet" href="/stylesheets/style.css">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp" rel="stylesheet">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  <link rel="stylesheet" href="/stylesheets/alerts.css">
+  <link href="https://fonts.googleapis.com/css?family=Poppins:600&display=swap" rel="stylesheet">
+  <link rel = "icon" href = "/images/logo.png" type = "image/x-icon">
+	<script src="https://kit.fontawesome.com/a81368914c.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+</head>
+
+<body>
+  <%- include('layouts/message') %>
+  <div class="reports-container">
+    <%- include('layouts/sidebar') %>
+  
+      <table class="datatable" id="datatable">
+  
+        <thead>
+          <th></th>
+          <th></th>
+          <th>#</th>
+          <th>Equipo</th>
+          <th>Tipo de Falla</th>
+          <th>Falla</th>
+          <th>Inicio</th>
+          <th>Fin</th>
+          <th>Tiempo Transcurrido</th>
+          <th>Estado</th>
+  
+        </thead>
+  
+        <tbody>
+          <% for( let i = 0; i < reports.length; i++ ) { %>
+            <tr class="row" for="checkbox" >
+              <td class="table-checkbox"><input type="checkbox" name="<%= reports[i].id %>" id="checkbox" value="<%= reports[i].id %>"></td>
+              <td> <%= reports[i].id  %> </td>
+              <td> <%= reports[i].equipment %> </td>
+              <td> <%= reports[i].specialty %> </td>
+              <td> <%= reports[i].failure %> </td>
+              <% startDate = new Date(reports[i].startTime) %>
+              <% endDate = new Date(reports[i].endTime) %>
+              <td> <%= startDate.toLocaleString() %> </td>
+              <%if(reports[i].endTime !== '0000-00-00 00:00:00.000000'){%>
+              <td><%= endDate.toLocaleString() %></td>
+              <% }else{ %>
+                <td>  </td>
+              <% } %>
+              <td> <%= reports[i].timeElapsed %> </td>
+              <% if (reports[i].status == 0) { %>
+                <td><span class="Abierto"></span></td>
+              <% } else {%>
+                <td><span class="Cerrado"></span></td>
+              <% } %>
+            </tr>
+          <% } %>
+          </tbody>
+  
+      </table>
+  
+      <div class="right">
+        <div class="top">
+          <button id="menu-btn">
+            <span class="material-icons-sharp">menu</span>
+          </button>
+        </div>
+  </div>
+</body>
+  
+
+<%- include('layouts/footer') %>
+
+<script type="text/javascript" src="/javascripts/flashMessages.js"></script>

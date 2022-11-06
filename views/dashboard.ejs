@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard</title>
+
+  <link rel="stylesheet" href="/stylesheets/DashboardStyle.css">
+  <link rel="stylesheet" href="/stylesheets/alerts.css">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp"
+  rel="stylesheet">
+  <link rel = "icon" href = "/images/logo.png" type = "image/x-icon">
+  <script src="https://kit.fontawesome.com/a81368914c.js"></script>
+</head>
+
+<body>
+  <%- include('layouts/message') %>
+  <div class="test"></div>
+  <div class="container">
+    <%- include('layouts/sidebar') %>
+    <main>
+      <h1>Dashboard</h1>
+
+      <div class="date">
+        <input type="date" id=date readonly >
+      </div>
+
+      <div class="insights">
+
+        <!-- OPEN REPORTS -->
+
+        <div class="open-reports">
+          <span class="material-icons-sharp">pending_actions</span>
+          <div class="middle">
+            <div class="left">
+              <h3>Reportes Abiertos</h3>
+              <h1 id="openReportCount"><%= count[0].count %></h1>
+            </div>
+            <div class="progress">
+              <svg>
+                <circle id="openReportProgress" cx="38" cy="38" r="36"></circle>
+              </svg>
+              <div class="number">
+                <p id="openReportPercentage"></p>
+              </div>
+            </div>
+  
+          </div>
+        </div>
+
+        <!-- CLOSED REPORTS -->
+
+        <div class="closed-reports">
+          <span class="material-icons-sharp">assignment_turned_in</span>
+          <div class="middle">
+            <div class="left">
+              <h3>Reportes Cerrados</h3>
+              <h1 id="closedReportCount"><%= count[1].count %></h1>
+            </div>
+            <div class="progress">
+              <svg>
+                <circle id="closedReportProgress" cx="38" cy="38" r="36"></circle>
+
+              </svg>
+              <div class="number">
+                <p id="closedReportPercentage">60%</p>
+                
+              </div>
+            </div>
+  
+          </div>
+        </div>
+
+        <!-- TOTAL REPORTS -->
+        
+        <div class="total-reports">
+          <span class="material-icons-sharp">assignment</span>
+          <div class="middle">
+            <div class="left">
+              <h3>Reportes Totales</h3>
+              <h1 id="totalReportCount"><%= count[0].count + count[1].count %></h1>
+            </div>
+            
+            <div class="progress">
+              <svg>
+                <circle cx="38" cy="38" r="36"></circle>
+              </svg>
+              <div class="number">
+                <p>100%</p>
+              </div>
+            </div>
+  
+          </div>
+        </div>
+
+        <!-- END OF REPORTS CARDS -->
+      </div>
+      <!-- END OF INSIGHTS -->
+
+      <div class="recent-reports">
+        <h2>Reportes Recientes</h2>
+        <table>
+          <thead>
+            <tr>
+                  <th>#</th>
+                  <th>Equipo</th>
+                  <th>Falla</th>
+                  <th>Inicio</th>
+                  <th>Fin</th>
+                  <th>Estado</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% for( let i = 0; i < reports.length; i++ ) { %>
+                <tr>
+                <td> <%= reports[i].id  %>  </td>
+                <td> <%= reports[i].equipment %> </td>
+                <td> <%= reports[i].failure %> </td>
+                <% startDate = new Date(reports[i].startTime) %>
+                <% endDate = new Date(reports[i].endTime) %>
+                <td> <%= startDate.toLocaleString() %> </td>
+                <%if(reports[i].endTime !== '0000-00-00 00:00:00.000000'){%>
+                <td><%= endDate.toLocaleString() %></td>
+                <% }else{ %>
+                  <td>  </td>
+                <% } %>
+
+                <% if (reports[i].status == 0) { %>
+                  <td><span class="Abierto"></span></td>
+                <% } else {%>
+                  <td><span class="Cerrado"></span></td>
+                <% } %>
+              </tr>
+            <% } %>
+          </tbody>
+        </table>
+      </div>
+    </main>
+
+    <!-- END OF MAIN -->
+
+    <div class="right">
+      <div class="top">
+        <button id="menu-btn">
+          <span class="material-icons-sharp">menu</span>
+        </button>
+        <div class="theme-toggler">
+          <span class="material-icons-sharp">light_mode</span>
+          <span class="material-icons-sharp active">dark_mode</span>
+        </div>
+        <div class="profile">
+          <div class="info">
+            <p>Bienvenido, <b><%=user.name%></b></p>
+            <small class="text-muted"><%=user.role%></small>
+          </div>
+        </div>
+      </div>
+
+      <!-- END OF TOP -->
+
+      <div class="recent-updates">
+        <h2>Actualizaciones Recientes</h2>
+        <div class="updates">
+          <% for( let j = 0; j < updates.length; j++ ) { %>
+          
+            <div class="update">
+              <div class="icon">
+                <% if (updates[j].type == 'INSERT') { %>
+                  <a href="/reports/edit/<%= updates[j].equipmentId%>"><img src="/images/add.svg" alt=""></a>
+                  
+                <% } else if (updates[j].type == 'UPDATE') { %>
+                  <a href="/reports/edit/<%= updates[j].equipmentId%>"><img src="/images/update.svg" alt=""></a>
+
+                  <% } else if (updates[j].type == 'DELETE') { %>
+                    <img src="/images/delete.svg" alt="">
+                <% } %>
+                
+              </div>
+              <div class="message">
+                <% if (updates[j].type == 'INSERT') { %>
+                  <p>Se ha creado un nuevo reporte con el ID N° <b><a href="/reports/edit/<%= updates[j].equipmentId%>"><%= updates[j].equipmentId%></a></b></p>
+                  
+                <% } else if (updates[j].type == 'UPDATE') { %>
+                  <p>Se ha editado el reporte N° <b><a href="/reports/edit/<%= updates[j].equipmentId%>"><%= updates[j].equipmentId%></a></b></p>
+
+                  <% } else if (updates[j].type == 'DELETE') { %>
+                    <p>Se ha eliminado el reporte N° <b><%=updates[j].equipmentId %></b></p>
+                <% } %>
+                <small class="text-muted timestamp"><%= updates[j].timestamp %></small>
+              </div>
+            </div>
+  
+          <% } %>
+
+
+        </div>
+      </div>
+
+      <!-- END OF RECENT UPDATES -->
+      <div class="other-analytics">
+        <h2>Equipos y Usuarios</h2>
+        <div class="item equipment">
+          <div class="icon">
+            <span class="material-icons-sharp">precision_manufacturing</span>
+          </div>
+          <div class="right">
+            <div class="info">
+              <h3>Equipos Registrados</h3>
+            </div>
+            <h3><%= count[3].count %></h3>
+          </div>
+        </div>
+
+        <div class="item users">
+          <div class="icon">
+            <span class="material-icons-sharp">people_alt</span>
+          </div>
+          <div class="right">
+            <div class="info">
+              <h3>Usuarios Registrados</h3>
+            </div>
+              <h3><%= count[2].count %></h3>
+          </div>
+        </div>
+
+
+      </div>
+    </div>
+  </div>
+
+  <script src="/javascripts/flashMessages.js"></script>
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=Promise"></script>
+  <script src="https://unpkg.com/dayjs-with-plugins"></script>
+  <script src="https://cdn.jsdelivr.net/npm/dayjs@1/locale/es-us.js"></script>
+  <script src="/javascripts/dashboard.js"></script>
+</body>
+</html>
