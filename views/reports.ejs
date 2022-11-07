@@ -50,7 +50,7 @@
               <% endDate = new Date(reports[i].endTime) %>
               <td> <%= startDate.toLocaleString() %> </td>
               <%if(reports[i].endTime !== '0000-00-00 00:00:00.000000'){%>
-              <td><%= endDate.toLocaleString() %></td>
+              <td><%= endDate.toLocaleString('en-GB') %></td>
               <% }else{ %>
                 <td>  </td>
               <% } %>
