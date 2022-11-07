@@ -1,3 +1,5 @@
+
+
 window.addEventListener('load', ()=>{
   if (localStorage.getItem('mode') == 'light') {
     document.body.classList.toggle('light-theme-variables')
@@ -28,6 +30,7 @@ form.addEventListener('submit', () => {
 
 var date1 = document.getElementById("startTime")
 var date2 = document.getElementById("endTime")
+date2.defaultValue = '0000-00-00 00:00:00.000000'
 var timeElapsed = document.getElementById("timeElapsed")
 
 function calculateTime(){
