@@ -48,7 +48,7 @@
               <td> <%= reports[i].failure %> </td>
               <% startDate = new Date(reports[i].startTime) %>
               <% endDate = new Date(reports[i].endTime) %>
-              <td> <%= startDate.toLocaleString() %> </td>
+              <td> <%= startDate.toLocaleString('en-GB') %> </td>
               <%if(reports[i].endTime !== '0000-00-00 00:00:00.000000'){%>
               <td><%= endDate.toLocaleString('en-GB') %></td>
               <% }else{ %>
