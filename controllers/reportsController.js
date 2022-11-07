@@ -31,7 +31,7 @@ module.exports = {
       await report.insertReport(cn, req.body, async function (err) {
         await res.redirect("/reports");
       });
-    } catch (error) {}
+    } catch (error) {console.log(error)}
   },
 
   delete: async function (req, res) {
