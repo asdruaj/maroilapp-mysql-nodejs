@@ -238,6 +238,30 @@ window.onclick = function(event) {
   }
 }
 
-function OpenModal(){
-  
-}
+const equipmentDeleteForm = document.getElementById('deleteEquipmentForm');
+const specialtyDeleteForm = document.getElementById('deleteSpecialtyForm');
+const failureDeleteForm = document.getElementById('deleteFailureForm');
+
+equipmentDeleteForm.addEventListener('submit', (e)=>{
+  e.preventDefault()
+
+  if (confirm('¿Está seguro que desea eliminar este elemento?') == true ) {
+    equipmentDeleteForm.submit()
+  }
+})
+
+specialtyDeleteForm.addEventListener('submit', (e)=>{
+  e.preventDefault()
+
+  if (confirm('¿Está seguro que desea eliminar este elemento?') == true ) {
+    specialtyDeleteForm.submit()
+  }
+})
+
+failureDeleteForm.addEventListener('submit', (e)=>{
+  e.preventDefault()
+
+  if (confirm('¿Está seguro que desea eliminar este elemento?') == true ) {
+    failureDeleteForm.submit()
+  }
+})

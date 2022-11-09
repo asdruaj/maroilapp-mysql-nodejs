@@ -176,15 +176,15 @@ table tbody tr{
 }
 
 /* The Close Button */
-.close {
+#close {
   color: white;
   float: right;
   font-size: 28px;
   font-weight: bold;
 }
 
-.close:hover,
-.close:focus {
+#close:hover,
+#close:focus {
   color: #000;
   text-decoration: none;
   cursor: pointer;
@@ -262,6 +262,14 @@ aside .sidebar a:last-child {
 }
 
 @media screen and (max-width: 920px) {
+  #menu-btn{
+    display: inline-block;
+    background: transparent;
+    cursor: pointer;
+    color: var(--color-dark);
+    position: absolute;
+    left: 1rem;
+  }
   .equipment-container {
     width: 100%;
     grid-template-columns: 1fr;
@@ -340,3 +348,9 @@ aside .sidebar a:last-child {
     left: -20px;
   }
 }
+
+@media screen and (max-width: 760px) {
+    .modal-content{
+      width: 80%;
+    }
+  }
