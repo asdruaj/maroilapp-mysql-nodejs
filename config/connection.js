@@ -33,7 +33,7 @@ const program = async () => {
 
   instance.addTrigger({
     name: 'TEST',
-    expression: 'railway.`tbl-recentupdates`',
+    expression: 'railway.tbl-recentupdates',
     statement: MySQLEvents.STATEMENTS.ALL,
     onEvent: async (event) => { // You will receive the events here
       let updatedObject = {
