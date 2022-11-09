@@ -238,30 +238,35 @@ window.onclick = function(event) {
   }
 }
 
-const equipmentDeleteForm = document.getElementById('deleteEquipmentForm');
-const specialtyDeleteForm = document.getElementById('deleteSpecialtyForm');
-const failureDeleteForm = document.getElementById('deleteFailureForm');
+const equipmentDeleteForm = document.querySelectorAll('.deleteEquipmentForm');
+const specialtyDeleteForm = document.querySelectorAll('.deleteSpecialtyForm');
+const failureDeleteForm = document.querySelectorAll('.deleteFailureForm');
 
-equipmentDeleteForm.addEventListener('submit', (e)=>{
-  e.preventDefault()
+equipmentDeleteForm.forEach(element => {
+  element.addEventListener('submit', (e)=>{
+    e.preventDefault()
+    if (confirm('¿Está seguro que desea eliminar este elemento?') == true ) {
+      element.submit()
+    }
+  })
+});
 
-  if (confirm('¿Está seguro que desea eliminar este elemento?') == true ) {
-    equipmentDeleteForm.submit()
-  }
-})
+specialtyDeleteForm.forEach(element => {
+  element.addEventListener('submit', (e)=>{
+    e.preventDefault()
+  
+    if (confirm('¿Está seguro que desea eliminar este elemento?') == true ) {
+      element.submit()
+    }
+  })
+});
 
-specialtyDeleteForm.addEventListener('submit', (e)=>{
-  e.preventDefault()
-
-  if (confirm('¿Está seguro que desea eliminar este elemento?') == true ) {
-    specialtyDeleteForm.submit()
-  }
-})
-
-failureDeleteForm.addEventListener('submit', (e)=>{
-  e.preventDefault()
-
-  if (confirm('¿Está seguro que desea eliminar este elemento?') == true ) {
-    failureDeleteForm.submit()
-  }
-})
+failureDeleteForm.forEach(element => {
+  element.addEventListener('submit', (e)=>{
+    e.preventDefault()
+  
+    if (confirm('¿Está seguro que desea eliminar este elemento?') == true ) {
+      element.submit()
+    }
+  })  
+});
