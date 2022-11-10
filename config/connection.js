@@ -43,14 +43,19 @@ const program = async () => {
           equipmentId: event.type == "DELETE"  ?  event.affectedRows[0].before.id : event.affectedRows[0].after.id,
           timestamp: event.timestamp,
         }
-        const query = new Promise((resolve, reject) => {
-          con.query(
-            "INSERT INTO `tbl-recentupdates` (user, type, equipmentId, timestamp) VALUES (?,?,?,?) ", [updatedObject.user, updatedObject.type, updatedObject.equipmentId, updatedObject.timestamp], (err, res, fields) => {
-            if(err) return reject
-            resolve()
+        try {
+          const query = new Promise((resolve, reject) => {
+            con.query(
+              "INSERT INTO `tbl-recentupdates` (user, type, equipmentId, timestamp) VALUES (?,?,?,?) ", [updatedObject.user, updatedObject.type, updatedObject.equipmentId, updatedObject.timestamp], (err, res, fields) => {
+              if(err) return reject
+              resolve()
+            });
           });
-        });
-        await query
+          await query
+        } catch (error) {
+          console.log(error)
+        }
+
     },
   });
   
