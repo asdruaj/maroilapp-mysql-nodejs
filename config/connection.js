@@ -35,7 +35,7 @@ const program = async () => {
     name: 'TEST',
     expression: DB_NAME+'.tbl-reports',
     statement: MySQLEvents.STATEMENTS.ALL,
-    onEvent: async (event) => { // You will receive the events here
+    onEvent: (event) => { // You will receive the events here
       try {
         let updatedObject = {
           user: event.type == "DELETE"  ?  event.affectedRows[0].before.user : event.affectedRows[0].after.user,
@@ -43,12 +43,11 @@ const program = async () => {
           equipmentId: event.type == "DELETE"  ?  event.affectedRows[0].before.id : event.affectedRows[0].after.id,
           timestamp: event.timestamp,
         }
-  
-          const promise = new Promise (con.query(
+          con.query(
           "INSERT INTO `tbl-recentupdates` (user, type, equipmentId, timestamp) VALUES (?,?,?,?) ", [updatedObject.user, updatedObject.type, updatedObject.equipmentId, updatedObject.timestamp], (err, res, fields) => {
           console.log(res)
-        }));
-        await promise
+        });
+
       } catch (error) {
         console.log(error)
       }
