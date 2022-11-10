@@ -31,7 +31,7 @@ const program = async () => {
 
   await instance.start();
 
-  instance.addTrigger({
+  await instance.addTrigger({
     name: 'TEST',
     expression: DB_NAME+'.tbl-reports',
     statement: MySQLEvents.STATEMENTS.ALL,
