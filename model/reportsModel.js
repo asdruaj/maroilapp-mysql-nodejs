@@ -52,9 +52,6 @@ module.exports = {
   getLastReports: async function (cn, func) {
     cn.query("SELECT * FROM `tbl-reports` ORDER BY `id` DESC LIMIT 5", func);
   },
-  getIdLastReport: async function (cn, func) {
-    await cn.query("SELECT id FROM `tbl-reports` ORDER BY `id` DESC LIMIT 1", func);
-  },
   insertRecentUpdates: async function(cn, data, func){
     await cn.query("INSERT INTO `tbl-recentupdates` (user, type, equipmentId, timestamp) VALUES (?,?,?,?) ",[data.user, data.type, data.equipmentId, data.timestamp], func)
   },

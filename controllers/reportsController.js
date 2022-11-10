@@ -28,13 +28,10 @@ module.exports = {
   },
   save: async function (req, res) {
     try {
-      await report.insertReport(cn, req.body, async function (err) {
-        await report.getIdLastReport(cn, async function(err, data){
-          await report.insertRecentUpdates(cn, {user: req.user.username, type: "INSERT", equipmentId: data[0].id, timestamp: Date.now()}, async function(err){
-            console.log(data[0].id)
+      await report.insertReport(cn, req.body, async function (err, fields) {
+          await report.insertRecentUpdates(cn, {user: req.user.name, type: "INSERT", equipmentId: fields.insertId, timestamp: Date.now()}, async function(err){
             if(err) console.log(err)
           });
-        })
         await res.redirect("/reports");
       });
 
