@@ -9,7 +9,6 @@ const Strategy = require("passport-local").Strategy;
 const session = require("express-session");
 const bcrypt = require("bcryptjs");
 const flash = require("connect-flash");
-const MySQLEvents = require('@rodrigogs/mysql-events');
 const MemoryStore = require('memorystore')(session)
 
 var indexRouter = require("./routes/index");

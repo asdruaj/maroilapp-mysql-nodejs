@@ -29,8 +29,15 @@ module.exports = {
   save: async function (req, res) {
     try {
       await report.insertReport(cn, req.body, async function (err) {
+        await report.getIdLastReport(cn, async function(err, data){
+          await report.insertRecentUpdates(cn, {user: req.user.username, type: "INSERT", equipmentId: data[0].id, timestamp: Date.now()}, async function(err){
+            console.log(data[0].id)
+            if(err) console.log(err)
+          });
+        })
         await res.redirect("/reports");
       });
+
     } catch (error) {console.log(error)}
   },
 
@@ -39,7 +46,10 @@ module.exports = {
       array = req.body;
       for (let i = 0; i < array.length; i++) {
         let element = array[i];
-        await report.deleteReport(cn, element, function (err) {
+        await report.deleteReport(cn, element, async function (err) {
+          await report.insertRecentUpdates(cn, {user: req.user.username, type: "DELETE", equipmentId: element, timestamp: Date.now()}, async function(err){
+            if(err) console.log(err)
+          });
         });
       }
     } catch (error) {}
@@ -63,6 +73,9 @@ module.exports = {
     try {
       if (req.body) {
         await report.updateReport(cn, req.body, async function (err) {
+          await report.insertRecentUpdates(cn, {user: req.user.username, type: "UPDATE", equipmentId: req.body.id, timestamp: Date.now()}, async function(err){
+            if(err) console.log(err)
+          });
           await res.redirect("/reports");
         });
       }
