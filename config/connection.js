@@ -35,22 +35,22 @@ const program = async () => {
     name: 'TEST',
     expression: DB_NAME+'.tbl-reports',
     statement: MySQLEvents.STATEMENTS.ALL,
-    onEvent: (event) => { // You will receive the events here
-      try {
+    onEvent: async (event) => { // You will receive the events here
+
         let updatedObject = {
           user: event.type == "DELETE"  ?  event.affectedRows[0].before.user : event.affectedRows[0].after.user,
           type: event.type,
           equipmentId: event.type == "DELETE"  ?  event.affectedRows[0].before.id : event.affectedRows[0].after.id,
           timestamp: event.timestamp,
         }
+        const query = new Promise((resolve, reject) => {
           con.query(
-          "INSERT INTO `tbl-recentupdates` (user, type, equipmentId, timestamp) VALUES (?,?,?,?) ", [updatedObject.user, updatedObject.type, updatedObject.equipmentId, updatedObject.timestamp], (err, res, fields) => {
-          console.log(res)
+            "INSERT INTO `tbl-recentupdates` (user, type, equipmentId, timestamp) VALUES (?,?,?,?) ", [updatedObject.user, updatedObject.type, updatedObject.equipmentId, updatedObject.timestamp], (err, res, fields) => {
+            if(err) return reject
+            resolve()
+          });
         });
-
-      } catch (error) {
-        console.log(error)
-      }
+        await query
     },
   });
   
