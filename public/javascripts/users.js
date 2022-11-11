@@ -1,20 +1,20 @@
-window.addEventListener('load', ()=>{
-  if (localStorage.getItem('mode') == 'light') {
-    document.body.classList.toggle('light-theme-variables')
+window.addEventListener("load", () => {
+  if (localStorage.getItem("mode") == "light") {
+    document.body.classList.toggle("light-theme-variables");
   }
-})
+});
 
 const sideMenu = document.querySelector("aside");
 const menuBtn = document.querySelector("#menu-btn");
-const closeBtn = document.querySelector("#close-btn")
-menuBtn.addEventListener('click', ()=>{
-  sideMenu.classList.remove('no-sidebar')
-  sideMenu.classList.add('sidebar-visible')
+const closeBtn = document.querySelector("#close-btn");
+menuBtn.addEventListener("click", () => {
+  sideMenu.classList.remove("no-sidebar");
+  sideMenu.classList.add("sidebar-visible");
 });
 
-closeBtn.addEventListener('click', ()=>{
-  sideMenu.classList.remove('sidebar-visible')
-  sideMenu.classList.add('no-sidebar')
+closeBtn.addEventListener("click", () => {
+  sideMenu.classList.remove("sidebar-visible");
+  sideMenu.classList.add("no-sidebar");
 });
 
 class DataTable {
@@ -170,9 +170,11 @@ class DataTable {
       let data = "";
 
       data += `<td class="table-checkbox">
-                    <input type="checkbox" id="checkbox${values[0]}" class="datatable-checkbox" data-id="${
+                    <input type="checkbox" id="checkbox${
                       values[0]
-                    }" name="id[${values[0].trim()}]" value="${values[0].trim()}" ${
+                    }" class="datatable-checkbox" data-id="${
+        values[0]
+      }" name="id[${values[0].trim()}]" value="${values[0].trim()}" ${
         checked ? "checked" : ""
       } </>
         </td><td><form method="get" action="/users/edit/${Number(

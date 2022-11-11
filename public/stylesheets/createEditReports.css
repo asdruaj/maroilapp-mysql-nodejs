@@ -1,25 +1,24 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap");
 
-
-:root{
+:root {
   --bg-color: #2a3338;
   --control-container-bg-color: #434c57;
   --text-color: white;
 }
 
-.light-theme-variables{
+.light-theme-variables {
   --bg-color: white;
   --control-container-bg-color: #c4c4c4;
   --text-color: #363949;
 }
 
-body{
+body {
   overflow-y: auto !important;
 }
 
-.grid{
-  padding: .8rem;
-  box-shadow: 0px 9px 15px -3px rgba(0,0,0,0.58);
+.grid {
+  padding: 0.8rem;
+  box-shadow: 0px 9px 15px -3px rgba(0, 0, 0, 0.58);
   border-radius: 10px;
   background-color: var(--bg-color);
   display: grid;
@@ -28,39 +27,39 @@ body{
   min-width: 435px;
 }
 
-select{
+select {
   border-radius: 4px;
   color: var(--text-color);
   height: 2rem;
-  padding: .2rem;
+  padding: 0.2rem;
   background-color: var(--control-container-bg-color);
   font-family: poppins, sans-serif;
 }
 
-input{
+input {
   border-radius: 4px;
   color: var(--text-color);
   height: 2rem;
-  padding: .2rem;
+  padding: 0.2rem;
   background-color: var(--control-container-bg-color);
 }
 
-textarea{
+textarea {
   background-color: var(--control-container-bg-color);
   border-radius: 4px;
   color: var(--text-color);
-  padding: .2rem;
+  padding: 0.2rem;
 }
 
-label{
+label {
   font-weight: 700;
   font-size: 1rem;
 }
-option{
+option {
   padding: 2rem;
 }
 
-.reportsDetails{
+.reportsDetails {
   grid-column: span 2;
 }
 
@@ -69,7 +68,6 @@ option{
   display: inline-block;
   width: 50px;
   height: 24px;
-
 }
 
 /* Hide default HTML checkbox */
@@ -87,9 +85,9 @@ option{
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: #4CAF50;
-  -webkit-transition: .4s;
-  transition: .4s;
+  background-color: #4caf50;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
 }
 
 .slider:before {
@@ -100,8 +98,8 @@ option{
   left: 4px;
   bottom: 4px;
   background-color: white;
-  -webkit-transition: .4s;
-  transition: .4s;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
 }
 
 input:checked + .slider {
@@ -109,7 +107,7 @@ input:checked + .slider {
 }
 
 input:focus + .slider {
-  box-shadow: 0 0 1px #2196F3;
+  box-shadow: 0 0 1px #2196f3;
 }
 
 input:checked + .slider:before {
@@ -121,25 +119,23 @@ input:checked + .slider:before {
 /* Rounded sliders */
 .slider.round {
   border-radius: 34px;
-  
 }
 
 .slider.round:before {
   border-radius: 50%;
 }
 
-.middle{
-min-width: 400px;
-margin: 0 auto;
-width: 50%;
-font-family: 'Poppins', sans-serif;
+.middle {
+  min-width: 400px;
+  margin: 0 auto;
+  width: 50%;
+  font-family: "Poppins", sans-serif;
 }
 
-.switch{
+.switch {
   position: relative;
   margin: 0 auto;
 }
-
 
 .button {
   display: inline-block;
@@ -148,7 +144,7 @@ font-family: 'Poppins', sans-serif;
   border-radius: 4px;
   background-color: #134265;
   border: none;
-  color: #FFFFFF;
+  color: #ffffff;
   text-align: center;
   vertical-align: middle;
   font-size: 1.5rem;
@@ -167,7 +163,7 @@ font-family: 'Poppins', sans-serif;
 }
 
 .button span:after {
-  content: '\00bb';
+  content: "\00bb";
   position: absolute;
   opacity: 0;
   top: 0;
@@ -184,41 +180,41 @@ font-family: 'Poppins', sans-serif;
   right: 0;
 }
 
-.switch-container{
+.switch-container {
   display: flex;
   flex-direction: row;
   padding: 0 25%;
 }
 
-.switch-container > label{
+.switch-container > label {
   font-size: 1rem;
   font-weight: 600;
 }
 
-textarea{
+textarea {
   resize: none;
 }
 
-@media screen and (max-width: 768px){
-  .grid{
+@media screen and (max-width: 768px) {
+  .grid {
     display: block;
     min-width: 100%;
   }
-  .create-container{
+  .create-container {
     grid-template-columns: 1fr;
   }
-  .middle{
+  .middle {
     width: 80%;
     margin: 4rem auto;
   }
 }
 
-@media screen and (max-width: 450px){
-  .middle{
+@media screen and (max-width: 450px) {
+  .middle {
     position: relative;
     left: -10px;
     width: 50vw;
     padding: 0 1rem;
     overflow-x: hidden;
-  } 
+  }
 }

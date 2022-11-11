@@ -8,7 +8,7 @@ var equipment = require("../model/equipmentModel");
 module.exports = {
   renderLogin: async function (req, res) {
     try {
-      res.render('login.ejs')
+      res.render("login.ejs");
     } catch (error) {}
-  }
-}
+  },
+};

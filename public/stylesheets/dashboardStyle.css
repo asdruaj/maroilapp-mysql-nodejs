@@ -157,7 +157,7 @@ aside .logo img {
   width: 4rem;
   height: 4rem;
   position: relative;
-  top: 10px
+  top: 10px;
 }
 
 aside .close {
@@ -310,7 +310,6 @@ main .insights svg circle {
 }
 main .insights .open-reports svg circle {
   stroke-dasharray: calc(38 * 6);
-
 }
 
 main .insights .closed-reports svg circle {
@@ -336,7 +335,7 @@ main .insights .progress .number {
 /* recent reports table */
 main .recent-reports {
   margin-top: 2rem;
-  margin-bottom: 1rem ;
+  margin-bottom: 1rem;
 }
 .recent-reports table tbody tr .Abierto {
   color: var(--color-success);
@@ -441,7 +440,6 @@ main table tbody tr:last-child td {
 }
 
 .right .recent-updates {
- 
   margin-top: 1rem;
 }
 
@@ -568,7 +566,7 @@ main table tbody tr:last-child td {
 }
 
 @media screen and (max-width: 768px) {
-  .alert{
+  .alert {
     position: fixed;
     z-index: 3;
     top: 64px;

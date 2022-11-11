@@ -1,4 +1,4 @@
-:root{
+:root {
   --primary-color: white;
   --secondary-color: #3d4449;
   --highlight-color: #3282b8a8;
@@ -32,7 +32,7 @@
   --button-bg-color: #3d4449;
 }
 
-.light-theme-variables{
+.light-theme-variables {
   --primary-color: #252525;
   --secondary-color: white;
   --dt-background-color-container: #ffffff;
@@ -46,10 +46,10 @@
   --button-color: #ffffff;
 }
 
-.equipmentInput{
+.equipmentInput {
   width: 100%;
 }
-.add{
+.add {
   color: var(--button-color);
   background-color: var(--button-bg-color);
   box-shadow: 1px 1px 8px #252525;
@@ -60,30 +60,30 @@
   transition: all 300ms;
 }
 
-.add:hover{
+.add:hover {
   background-color: #555d63;
 }
-main table tbody td{
-  color: var(--primary-color)
+main table tbody td {
+  color: var(--primary-color);
 }
 
-.logo img{
+.logo img {
   top: -10px !important;
 }
 
-.equipment-container{
+.equipment-container {
   display: grid;
   grid-template-columns: 20% 1fr 1fr 1fr;
   gap: 1rem;
 }
-aside{
+aside {
   margin-left: 20px;
 }
-table td{
+table td {
   word-wrap: break-word;
 }
-table{
-  font-family: 'poppins', sans-serif;
+table {
+  font-family: "poppins", sans-serif;
   background-color: var(--dt-background-color-container);
   border-radius: var(--dt-border-radius);
   color: var(--dt-text-color);
@@ -96,39 +96,40 @@ table{
 }
 .equipment-container table,
 .equipment-container table th,
-.equipment-container table td{
+.equipment-container table td {
   padding: var(--dt-padding-s) var(--dt-padding-s);
 }
 
-.equipment-container table th{
+.equipment-container table th {
   font-weight: bolder;
   text-align: center;
-  border-bottom:  solid 1px var(--dt-border-color);
-}
-
-.equipment-container table tbody tr td{
-  border: none
-}
-
-table tbody tr{
   border-bottom: solid 1px var(--dt-border-color);
 }
 
-.equipment-container  table  tbody  tr:hover{
+.equipment-container table tbody tr td {
+  border: none;
+}
+
+table tbody tr {
+  border-bottom: solid 1px var(--dt-border-color);
+}
+
+.equipment-container table tbody tr:hover {
   background-color: var(--dt-hover-cell-color);
   transition: all 300ms;
 }
-.equipmentSelected, .specSelected{
+.equipmentSelected,
+.specSelected {
   background-color: var(--highlight-color) !important;
 }
 
-.equipment-container table tbody td:last-child{
+.equipment-container table tbody td:last-child {
   display: flex;
   justify-content: space-around;
   align-items: center;
 }
 
-.equipment-container table tbody td button{
+.equipment-container table tbody td button {
   padding: 3px;
   background-color: transparent;
 }
@@ -145,8 +146,8 @@ table tbody tr{
   width: 100%; /* Full width */
   height: 100%; /* Full height */
   overflow: auto; /* Enable scroll if needed */
-  background-color: rgb(0,0,0); /* Fallback color */
-  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+  background-color: rgb(0, 0, 0); /* Fallback color */
+  background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
 }
 
 /* Modal Content */
@@ -157,22 +158,34 @@ table tbody tr{
   padding: 0;
   border: 1px solid #888;
   width: 40%;
-  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   -webkit-animation-name: animatetop;
   -webkit-animation-duration: 0.4s;
   animation-name: animatetop;
-  animation-duration: 0.4s
+  animation-duration: 0.4s;
 }
 
 /* Add Animation */
 @-webkit-keyframes animatetop {
-  from {top:-300px; opacity:0} 
-  to {top:0; opacity:1}
+  from {
+    top: -300px;
+    opacity: 0;
+  }
+  to {
+    top: 0;
+    opacity: 1;
+  }
 }
 
 @keyframes animatetop {
-  from {top:-300px; opacity:0}
-  to {top:0; opacity:1}
+  from {
+    top: -300px;
+    opacity: 0;
+  }
+  to {
+    top: 0;
+    opacity: 1;
+  }
 }
 
 /* The Close Button */
@@ -206,7 +219,7 @@ table tbody tr{
   background-color: var(--modal-bg-body);
 }
 
-.equipmentInput{
+.equipmentInput {
   font-family: poppins, sans-serif;
   border-radius: 2px;
   background-color: #d6d6d6d8;
@@ -221,12 +234,12 @@ table tbody tr{
   color: white;
 }
 
-.table-controls{
+.table-controls {
   display: flex;
 
   justify-content: center;
 }
-.table-controls form input{
+.table-controls form input {
   background-color: var(--input-color);
   color: var(--dt-text-color);
   border-radius: 5px;
@@ -239,9 +252,7 @@ table tbody tr{
   flex-wrap: nowrap;
 }
 
-.left-table
-.middle-table
-.right-table{
+.left-table .middle-table .right-table {
   height: 2px;
   position: relative;
   top: 2rem;
@@ -249,7 +260,7 @@ table tbody tr{
 
 .left-table table,
 .middle-table table,
-.right-table table{
+.right-table table {
   margin: 1rem auto;
 }
 
@@ -265,7 +276,7 @@ aside .sidebar a:last-child {
   border-radius: 4px;
   background-color: #134265;
   border: none;
-  color: #FFFFFF;
+  color: #ffffff;
   text-align: center;
   vertical-align: middle;
   font-size: 1.5rem;
@@ -284,7 +295,7 @@ aside .sidebar a:last-child {
 }
 
 .modalSubmit span:after {
-  content: '\00bb';
+  content: "\00bb";
   position: absolute;
   opacity: 0;
   top: 0;
@@ -302,7 +313,7 @@ aside .sidebar a:last-child {
 }
 
 @media screen and (max-width: 920px) {
-  #menu-btn{
+  #menu-btn {
     display: inline-block;
     background: transparent;
     cursor: pointer;
@@ -366,7 +377,7 @@ aside .sidebar a:last-child {
     margin: 0 auto 4rem;
   }
 
-  .right  .top {
+  .right .top {
     position: fixed;
     top: 0;
     left: 0;
@@ -390,7 +401,7 @@ aside .sidebar a:last-child {
 }
 
 @media screen and (max-width: 760px) {
-    .modal-content{
-      width: 80%;
-    }
+  .modal-content {
+    width: 80%;
   }
+}

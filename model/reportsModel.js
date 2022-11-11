@@ -16,7 +16,7 @@ module.exports = {
         data.report,
         data.actionsTaken,
         data.status,
-        data.user
+        data.user,
       ],
       func
     );
@@ -52,13 +52,23 @@ module.exports = {
   getLastReports: async function (cn, func) {
     cn.query("SELECT * FROM `tbl-reports` ORDER BY `id` DESC LIMIT 5", func);
   },
-  insertRecentUpdates: async function(cn, data, func){
-    await cn.query("INSERT INTO `tbl-recentupdates` (user, type, equipmentId, timestamp) VALUES (?,?,?,?) ",[data.user, data.type, data.equipmentId, data.timestamp], func)
+  insertRecentUpdates: async function (cn, data, func) {
+    await cn.query(
+      "INSERT INTO `tbl-recentupdates` (user, type, equipmentId, timestamp) VALUES (?,?,?,?) ",
+      [data.user, data.type, data.equipmentId, data.timestamp],
+      func
+    );
   },
   getRecentUpdates: async function (cn, func) {
-    cn.query("SELECT * FROM `tbl-recentupdates` ORDER BY `id` DESC LIMIT 3", func);
+    cn.query(
+      "SELECT * FROM `tbl-recentupdates` ORDER BY `id` DESC LIMIT 3",
+      func
+    );
   },
-  getCount: async function (cn, func){
-    cn.query("SELECT 'openReports' AS `countObject`, COUNT(if(status=0,1,null)) as `count` FROM `tbl-reports` UNION ALL select 'closedReports' AS `tbl-reports`, count(if(status=1,1,null)) as `count` from `tbl-reports` UNION ALL SELECT 'users' AS `tbl-users`, COUNT(*) FROM `tbl-users` UNION ALL SELECT 'equipment' AS `tbl-equipment`, COUNT(*) FROM `tbl-equipment`", func);
-  }
+  getCount: async function (cn, func) {
+    cn.query(
+      "SELECT 'openReports' AS `countObject`, COUNT(if(status=0,1,null)) as `count` FROM `tbl-reports` UNION ALL select 'closedReports' AS `tbl-reports`, count(if(status=1,1,null)) as `count` from `tbl-reports` UNION ALL SELECT 'users' AS `tbl-users`, COUNT(*) FROM `tbl-users` UNION ALL SELECT 'equipment' AS `tbl-equipment`, COUNT(*) FROM `tbl-equipment`",
+      func
+    );
+  },
 };

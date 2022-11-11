@@ -9,13 +9,16 @@ module.exports = {
   index: async function (req, res) {
     try {
       equipment.getEquipment(cn, async function (err, data) {
-        equipment.getSpecialty(cn, async(err, data2)=>{
-          equipment.getFailure(cn, async(err, data3)=>{
-            await res.render("equipment.ejs", {equipment: data, specialty: data2, failure: data3});
-          })
-        })
-        
-      }); 
+        equipment.getSpecialty(cn, async (err, data2) => {
+          equipment.getFailure(cn, async (err, data3) => {
+            await res.render("equipment.ejs", {
+              equipment: data,
+              specialty: data2,
+              failure: data3,
+            });
+          });
+        });
+      });
     } catch (error) {}
   },
   create: async function (req, res) {
@@ -38,7 +41,7 @@ module.exports = {
         await res.redirect("/equipment");
       });
     } catch (error) {
-      console.log(error)
+      console.log(error);
     }
   },
   saveFailure: async function (req, res) {
@@ -49,34 +52,34 @@ module.exports = {
         await res.redirect("/equipment");
       });
     } catch (error) {
-      console.log(error)
+      console.log(error);
     }
   },
 
   deleteEquipment: async function (req, res) {
     try {
       console.log("Recepción de datos");
-      console.log(req.params.id)
-      equipment.deleteEquipment(cn, req.params.id, async function(err){
-        await res.redirect("/equipment")
+      console.log(req.params.id);
+      equipment.deleteEquipment(cn, req.params.id, async function (err) {
+        await res.redirect("/equipment");
       });
     } catch (error) {}
   },
   deleteSpecialty: async function (req, res) {
     try {
       console.log("Recepción de datos");
-      console.log(req.params.id)
-      equipment.deleteSpecialty(cn, req.params.id, async function(err){
-        await res.redirect("/equipment")
+      console.log(req.params.id);
+      equipment.deleteSpecialty(cn, req.params.id, async function (err) {
+        await res.redirect("/equipment");
       });
     } catch (error) {}
   },
   deleteFailure: async function (req, res) {
     try {
       console.log("Recepción de datos");
-      console.log(req.params.id)
-      equipment.deleteFailure(cn, req.params.id, async function(err){
-        await res.redirect("/equipment")
+      console.log(req.params.id);
+      equipment.deleteFailure(cn, req.params.id, async function (err) {
+        await res.redirect("/equipment");
       });
     } catch (error) {}
   },
@@ -86,7 +89,7 @@ module.exports = {
       if (req.body) {
         equipment.updateEquipment(cn, req.body, async function (err) {
           await res.redirect("/equipment");
-          console.log(req.body)
+          console.log(req.body);
         });
       }
     } catch (error) {}
@@ -96,7 +99,7 @@ module.exports = {
       if (req.body) {
         equipment.updateSpecialty(cn, req.body, async function (err) {
           await res.redirect("/equipment");
-          console.log(req.body)
+          console.log(req.body);
         });
       }
     } catch (error) {}
@@ -106,9 +109,9 @@ module.exports = {
       if (req.body) {
         equipment.updateFailure(cn, req.body, async function (err) {
           await res.redirect("/equipment");
-          console.log(req.body)
+          console.log(req.body);
         });
       }
     } catch (error) {}
   },
-}
+};

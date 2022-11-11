@@ -1,6 +1,6 @@
-:root{
+:root {
   --bg-color: #ffab2cb0;
-  --text-color: white
+  --text-color: white;
 }
 /* The alert message box */
 .alert {
