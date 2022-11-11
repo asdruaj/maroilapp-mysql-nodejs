@@ -178,7 +178,6 @@ table tbody tr{
 /* The Close Button */
 #close {
   color: white;
-  float: right;
   font-size: 28px;
   font-weight: bold;
 }
@@ -192,6 +191,8 @@ table tbody tr{
 }
 
 .modal-header {
+  display: flex;
+  justify-content: space-between;
   padding: 2px 16px;
   background-color: var(--modal-bg-color);
   color: white;
@@ -213,11 +214,7 @@ table tbody tr{
   padding: 1rem;
   margin-bottom: 1rem;
 }
-.modalSubmit{
-  display: block;
-  margin-top: 1rem;
-  margin: 0 auto;
-}
+
 .modal-footer {
   padding: 2px 16px;
   background-color: var(--modal-bg-color);
@@ -259,6 +256,49 @@ table tbody tr{
 aside .sidebar a:last-child {
   position: absolute;
   bottom: 3rem;
+}
+
+.modalSubmit {
+  display: inline-block;
+  height: 5px !important;
+  position: relative;
+  border-radius: 4px;
+  background-color: #134265;
+  border: none;
+  color: #FFFFFF;
+  text-align: center;
+  vertical-align: middle;
+  font-size: 1.5rem;
+  padding: 20px;
+  width: 50%;
+  transition: all 0.5s;
+  cursor: pointer;
+  margin: 0 auto;
+  left: 25%;
+}
+
+.modalSubmit span {
+  position: relative;
+  top: -11px;
+  transition: 0.5s;
+}
+
+.modalSubmit span:after {
+  content: '\00bb';
+  position: absolute;
+  opacity: 0;
+  top: 0;
+  right: -20px;
+  transition: 0.5s;
+}
+
+.modalSubmit:hover span {
+  padding-right: 25px;
+}
+
+.modalSubmit:hover span:after {
+  opacity: 1;
+  right: 0;
 }
 
 @media screen and (max-width: 920px) {

@@ -135,20 +135,6 @@ width: 50%;
 font-family: 'Poppins', sans-serif;
 }
 
-@media screen and (max-width: 768px){
-  .grid{
-    display: block;
-    min-width: 100%;
-  }
-  .create-container{
-    grid-template-columns: 1fr;
-  }
-  .middle{
-    width: 80%;
-    margin: 4rem auto;
-  }
-}
-
 .switch{
   position: relative;
   margin: 0 auto;
@@ -211,6 +197,20 @@ font-family: 'Poppins', sans-serif;
 
 textarea{
   resize: none;
+}
+
+@media screen and (max-width: 768px){
+  .grid{
+    display: block;
+    min-width: 100%;
+  }
+  .create-container{
+    grid-template-columns: 1fr;
+  }
+  .middle{
+    width: 80%;
+    margin: 4rem auto;
+  }
 }
 
 @media screen and (max-width: 450px){

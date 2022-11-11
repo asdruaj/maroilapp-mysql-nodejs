@@ -149,26 +149,26 @@
           <!-- Modal content -->
           <div class="modal-content">
             <div class="modal-header">
-              <span id ="close" class="close">&times;</span>
               <h2 id="modalHeader"></h2>
+              <span id ="close" class="close">&times;</span>
             </div>
             <div class="modal-body" id="modalBody">
               <form method="post" id="editEquipmentForm" style="display: none">
                 <input type="hidden" name="id" id="equipmentIdForm" value="">
                 <input type="text" name="equipmentName" id="equipmentInput" class="equipmentInput">
-                <input class="modalSubmit" type="submit" >
+                <button class="modalSubmit" type="submit"><span>Editar</span></button>
               </form>
 
               <form method="post" id="editSpecialtyForm" style="display: none">
                 <input type="hidden" id="specialtyIdForm" name = "id">
                 <input type="text" name = "specialtyName" id="specialtyInput" class="equipmentInput">
-                <input class="modalSubmit" type="submit" >
+                <button class="modalSubmit" type="submit"><span>Editar</span></button>
               </form>
 
               <form method="post" id="editFailureForm" style="display: none">
                 <input type="hidden" name="id" id="failureIdForm">
                 <input type="text" name="failure" id="failureInput" class="equipmentInput">
-                <input class="modalSubmit" type="submit" >
+                <button class="modalSubmit" type="submit"><span>Editar</span></button>
               </form>
             </div>
             <div class="modal-footer">
