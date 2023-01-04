@@ -13,5 +13,7 @@ router.post("/", isLoggedIn, isAdmin, usersController.save);
 router.post("/delete", isLoggedIn, isAdmin, usersController.delete);
 router.get('/edit/:id', isLoggedIn, isAdmin, usersController.edit);
 router.post('/update', isLoggedIn, isAdmin, usersController.update);
+router.get('/editProfile', isLoggedIn, usersController.editProfile);
+router.post('/updateProfile', isLoggedIn, usersController.updateProfile);
 
 module.exports = router;

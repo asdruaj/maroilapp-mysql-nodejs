@@ -59,4 +59,25 @@ module.exports = {
       });
     }
   },
+
+  editProfile: async function (req, res) {
+    await user.returnIdData(cn, req.user.id, async function (err, data) {
+      console.log(data[0]);
+      await res.render("editProfile.ejs");
+    });
+  },
+
+  updateProfile: async function (req, res) {
+    if (req.body) {
+      await user.updateProfile(cn, req.body, async function (err) {
+        if (err && err.code === "ER_DUP_ENTRY") {
+          req.flash("message", "Algo salió mal. Este usuario ya existe");
+          res.redirect("/dashboard");
+        } else {
+          await res.redirect("/dashboard");
+        }
+      });
+    }
+  }
+
 };
