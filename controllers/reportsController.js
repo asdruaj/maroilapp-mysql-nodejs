@@ -60,7 +60,7 @@ module.exports = {
           await report.insertRecentUpdates(
             cn,
             {
-              user: req.user.username,
+              user: req.user.name,
               type: "DELETE",
               equipmentId: element,
               timestamp: Date.now(),
@@ -100,7 +100,7 @@ module.exports = {
           await report.insertRecentUpdates(
             cn,
             {
-              user: req.user.username,
+              user: req.user.name,
               type: "UPDATE",
               equipmentId: req.body.id,
               timestamp: Date.now(),

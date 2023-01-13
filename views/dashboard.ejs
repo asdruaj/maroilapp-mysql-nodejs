@@ -189,7 +189,8 @@
               <div class="message">
                 <% if (updates[j].type == 'INSERT') { %>
                 <p>
-                  Se ha creado un nuevo reporte con el ID N°
+                  <b><%= updates[j].user%></b> ha creado un nuevo reporte con el
+                  ID N°
                   <b
                     ><a href="/reports/edit/<%= updates[j].equipmentId%>"
                       ><%= updates[j].equipmentId%></a
@@ -199,7 +200,7 @@
 
                 <% } else if (updates[j].type == 'UPDATE') { %>
                 <p>
-                  Se ha editado el reporte N°
+                  <b><%= updates[j].user%></b> ha editado el reporte N°
                   <b
                     ><a href="/reports/edit/<%= updates[j].equipmentId%>"
                       ><%= updates[j].equipmentId%></a
@@ -209,7 +210,7 @@
 
                 <% } else if (updates[j].type == 'DELETE') { %>
                 <p>
-                  Se ha eliminado el reporte N°
+                  <b><%= updates[j].user%></b> ha eliminado el reporte N°
                   <b><%=updates[j].equipmentId %></b>
                 </p>
                 <% } %>

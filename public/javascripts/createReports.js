@@ -94,3 +94,17 @@ specialtySelect.onchange = function (event) {
     }
   }
 };
+
+editUserForm = document.querySelector(".editUserForm")
+
+editUserForm.addEventListener("submit", (e)=>{
+  e.preventDefault()
+
+  if (document.getElementById("password").value === document.getElementById("confirm-password").value) {
+    editUserForm.submit();
+  } else {
+    alert("Las contraseñas no coinciden")
+    document.getElementById("password").value = ""
+    document.getElementById("confirm-password").value = ""
+  }
+});

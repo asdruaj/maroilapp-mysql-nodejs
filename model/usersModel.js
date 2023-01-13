@@ -29,8 +29,8 @@ module.exports = {
 
   updateProfile: async function (cn, data, func) {
     cn.query(
-      "UPDATE `tbl-users` SET `name`=?, `username`=?, `password`=? WHERE `id`=?",
-      [data.name, data.username, data.password, data.id],
+      "UPDATE `tbl-users` SET `username`=?, `password`=? WHERE `id`=?",
+      [data.username, data.password, data.id],
       func
     );
   },
