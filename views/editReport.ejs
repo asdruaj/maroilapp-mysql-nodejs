@@ -29,11 +29,44 @@
 
 
       <div class="grid">
+
+        <div class="control-container vessel">
+          <label for="terminal">Terminal</label>
+          <select name="terminal" id="terminal">
+            <option selected style="display: none" value="<%=reports.terminal%>">
+              <%=reports.terminal%>
+            </option>
+            <option
+              class="equipmentOptions"
+              value="P. San Felix"
+            >
+            P. San Felix
+            </option>
+            <option
+              class="equipmentOptions"
+              value="P. Cedeño"
+            >
+            P. Cedeño
+            </option>
+
+          </select>
+
+        </div>
+
+        <div class="control-container vessel">
+          <label for="vessel">Buque</label>
+          <select name="vessel" id="vessel">
+            <option  selected style="display: none;" value="<%=reports.vessel%>"><%=reports.vesselName%></option>
+            <% for( let i = 0; i < vessel.length; i++ ) { %>
+            <option class="equipmentOptions" data-vesselId="<%=vessel[i].id %>" value="<%=vessel[i].vesselId%>"><%=vessel[i].vessel%></option>
+            <% } %>
+          </select>
+          <input id="vesselName" type="hidden" name="vesselName" value="<%=reports.vesselName%>"/>
+        </div>
         <div class="equipmentDetails">
           <div class="control-container">
             <label for="equipment">Equipo</label>
             <select name="equipment" id="equipment" >
-        
               <option  selected style="display: none;" value="<%=reports.equipment%>"><%=reports.equipment%></option>
               <% for( let i = 0; i < equipment.length; i++ ) { %>
               <option class="equipmentOptions" data-equipmentId="<%=equipment[i].id %>" value="<%=equipment[i].equipmentName%>"><%=equipment[i].equipmentName%></option>
@@ -42,7 +75,7 @@
             <!-- <input id="equipment" class="form-control" type="text" name="equipment" value="<%=reports.equipment%>"> -->
           </div>
           <div class="control-container">
-            <label for="specialty">Tipo de Falla</label>
+            <label for="specialty">Categoría</label>
             <select name="specialty" id="specialty">
               <option  selected style="display: none;" value="<%=reports.specialty%>"><%=reports.specialty%></option>
               <% for( let i = 0; i < specialty.length; i++ ) { %>
@@ -95,9 +128,10 @@
             <textarea id="report" class="form-control" name="report" cols="40" rows="10"><%=reports.report%></textarea>
           </div>
           <div class="control-container">
-            <label for="actionsTaken">Acciones Tomadas</label>
+            <label for="actionsTaken">Pendientes</label>
             <textarea id="actionsTaken" class="form-control" cols="40" rows="5" name="actionsTaken"><%=reports.actionsTaken%></textarea>
           </div>
+
           <div class="control-container">
             <label for="status">Estado</label>
             <input id = "statusHidden" class="form-control" type="hidden" name="status" value="0">
@@ -120,12 +154,44 @@
                 <label>Cerrado</label>
               </div>
               <% } %>
-        
+              
+              <div class="control-container" id="container-slider-solution" style="display: none">
+                <label for="solution">¿El problema fue solucionado?</label>
+     
+                  
+                    <input
+                      id="solutionHidden"
+                      class="form-control"
+                      type="hidden"
+                      name="solution"
+                      value="0"
+                    />
+                    <% if (reports.solution == 1) { %>
+                      <div class="switch-container">
+                        <label>Si</label>
+                        <label class="switch">
+                          <input id="solution" class="form-control" type="checkbox" name="solution" value = "1" checked>
+                          <span class="slider round"></span>
+                        </label>
+                        <label>No</label>
+                      </div>
+                    <% } else {%>
+                      <div class="switch-container">
+                        <label>Si</label>
+                        <label class="switch">
+                        <input id="solution" class="form-control" type="checkbox" name="solution" value = "1" >
+                        <span class="slider round"></span>
+                                </label>
+                        <label>No</label>
+                      </div>
+                      <% } %>
+
           </div>
-          <button class="button" type="submit"><span>Actualizar</span></button>
         </div>
+        <button class="button" type="submit"><span>Actualizar</span></button>
       </div>
       </form>
+    </div>
     </div>
 
   </div>

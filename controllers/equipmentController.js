@@ -114,4 +114,29 @@ module.exports = {
       }
     } catch (error) {}
   },
+  vesselIndex: async function (req, res) {
+    try {
+        await equipment.getVessel(cn, async function(err, data){
+          await res.render("vessel.ejs", {vessel: data});
+        })
+    } catch (error) {}
+  },
+  saveVessel: async function (req, res) {
+    try {
+      console.log(req.body);
+      await equipment.insertVessel(cn, req.body, async function (err) {
+        await res.redirect("/vessel");
+      });
+    } catch (error) {}
+  },
+
+  deleteVessel: async function (req, res) {
+    try {
+      console.log("Recepción de datos");
+      console.log(req.params.id);
+      equipment.deleteVessel(cn, req.params.id, async function (err) {
+        await res.redirect("/vessel");
+      });
+    } catch (error) {}
+  },
 };

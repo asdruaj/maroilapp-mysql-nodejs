@@ -5,8 +5,11 @@ module.exports = {
 
   insertReport: async function (cn, data, func) {
     cn.query(
-      "INSERT INTO `tbl-reports` (`equipment`, `specialty`, `failure`, `startTime`, `endTime`, `timeElapsed`, `report`, `actionsTaken`, `status`, `user`) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
+      "INSERT INTO `tbl-reports` (`terminal`,`vessel`, `vesselName`, `equipment`, `specialty`, `failure`, `startTime`, `endTime`, `timeElapsed`, `report`, `actionsTaken`, `status`, `user`, solution) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
       [
+        data.terminal,
+        data.vessel,
+        data.vesselName,
         data.equipment,
         data.specialty,
         data.failure,
@@ -17,6 +20,7 @@ module.exports = {
         data.actionsTaken,
         data.status,
         data.user,
+        data.solution
       ],
       func
     );
@@ -32,8 +36,11 @@ module.exports = {
 
   updateReport: async function (cn, data, func) {
     cn.query(
-      "UPDATE `tbl-reports` SET `equipment`=?, `specialty`=?, `failure`=?, `startTime`=?, `endTime`=?, `timeElapsed`=?, `report`=?, `actionsTaken`=?, `status`=? WHERE `id`=?",
+      "UPDATE `tbl-reports` SET `terminal`=?, `vessel` = ?, `vesselName`=?, `equipment`=?, `specialty`=?, `failure`=?, `startTime`=?, `endTime`=?, `timeElapsed`=?, `report`=?, `actionsTaken`=?, `status`=?, `solution`=? WHERE `id`=?",
       [
+        data.terminal,
+        data.vessel,
+        data.vesselName,
         data.equipment,
         data.specialty,
         data.failure,
@@ -43,6 +50,7 @@ module.exports = {
         data.report,
         data.actionsTaken,
         data.status,
+        data.solution,
         data.id,
       ],
       func

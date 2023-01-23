@@ -28,8 +28,10 @@
           <th></th>
           <th></th>
           <th>#</th>
+          <th>Terminal</th>
+          <th>Buque</th>
           <th>Equipo</th>
-          <th>Tipo de Falla</th>
+          <th>Categoría</th>
           <th>Falla</th>
           <th>Inicio</th>
           <th>Fin</th>
@@ -43,6 +45,8 @@
             <tr class="row" for="checkbox" >
               <td class="table-checkbox"><input type="checkbox" name="<%= reports[i].id %>" id="checkbox" value="<%= reports[i].id %>"></td>
               <td> <%= reports[i].id  %> </td>
+              <td> <%= reports[i].terminal %></td>
+              <td> <%= reports[i].vessel  %> </td>
               <td> <%= reports[i].equipment %> </td>
               <td> <%= reports[i].specialty %> </td>
               <td> <%= reports[i].failure %> </td>
@@ -55,10 +59,12 @@
                 <td>  </td>
               <% } %>
               <td> <%= reports[i].timeElapsed %> </td>
-              <% if (reports[i].status == 0) { %>
+              <% if (reports[i].status == 0 && reports[i].solution == 0) { %>
                 <td><span class="Abierto"></span></td>
-              <% } else {%>
+              <% } else if (reports[i].status == 1 && reports[i].solution == 0) {%>
                 <td><span class="Cerrado"></span></td>
+              <% } else if (reports[i].status == 1 && reports[i].solution == 1) {%>
+              <td><span class="Cerrado Pendiente"></span></td>
               <% } %>
             </tr>
           <% } %>

@@ -18,4 +18,5 @@ router.post("/editEquipment/:id", isLoggedIn, isAdmin, equipmentController.updat
 router.post("/editSpecialty/:id", isLoggedIn, isAdmin, equipmentController.updateSpecialty)
 router.post("/editFailure/:id", isLoggedIn, isAdmin, equipmentController.updateFailure)
 
+
 module.exports = router;

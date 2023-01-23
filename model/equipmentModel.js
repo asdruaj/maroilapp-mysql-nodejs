@@ -68,4 +68,19 @@ module.exports = {
       func
     );
   },
+
+  getVessel: async function(cn, func){
+    cn.query("SELECT * from `tbl-vessel` ORDER BY `vessel` ASC", func)
+  },
+
+  insertVessel: async function (cn, data, func) {
+    cn.query(
+      "INSERT INTO `tbl-vessel` (`vessel`, `vesselId`) VALUES (?, ?);",
+      [data.vessel, data.vesselId],
+      func
+    );
+  },
+  deleteVessel: async function (cn, id, func) {
+    cn.query("DELETE FROM `tbl-vessel` WHERE `id`=?", [id], func);
+  },
 };

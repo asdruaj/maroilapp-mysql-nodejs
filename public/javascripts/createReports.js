@@ -2,6 +2,14 @@ window.addEventListener("load", () => {
   if (localStorage.getItem("mode") == "light") {
     document.body.classList.toggle("light-theme-variables");
   }
+
+  if (document.getElementById("solution").checked || document.getElementById("status").checked) {
+    document.getElementById("solutionHidden").disabled = true;
+    document.getElementById("container-slider-solution").style.display = "block"
+  }else if(document.getElementById("status").checked == false){
+    document.getElementById("container-slider-solution").style.display = "none"
+  }
+
 });
 
 const sideMenu = document.querySelector("aside");
@@ -24,8 +32,19 @@ form.addEventListener("submit", () => {
   if (document.getElementById("status").checked) {
     document.getElementById("statusHidden").disabled = true;
   }
+  if (document.getElementById("solution").checked) {
+    document.getElementById("solutionHidden").disabled = true;
+  }
 });
 
+document.getElementById("status").addEventListener("click", ()=>{
+  if ((document.getElementById("status").checked)) {
+    document.getElementById("container-slider-solution").style.display = "block"
+  } else {
+    document.getElementById("solution").checked = false
+    document.getElementById("container-slider-solution").style.display = "none"
+  }
+})
 var date1 = document.getElementById("startTime");
 var date2 = document.getElementById("endTime");
 
@@ -94,6 +113,12 @@ specialtySelect.onchange = function (event) {
     }
   }
 };
+
+vessel = document.querySelector('#vessel');
+
+vessel.addEventListener('change', (event)=>{
+  document.querySelector('#vesselName').value = event.target.options[event.target.selectedIndex].textContent.trim();
+});
 
 editUserForm = document.querySelector(".editUserForm")
 

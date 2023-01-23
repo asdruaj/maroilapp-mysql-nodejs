@@ -1,0 +1,79 @@
+.vessel-container{
+  display: grid;
+  grid-template-columns: 20% 1fr 1fr;
+  gap: 1rem;
+}
+
+input{
+  height: 2rem !important;
+  display: block !important;
+  margin: 10px 0 !important;
+  width: 100% !important;
+}
+
+form{
+width: 80% !important;
+}
+
+.button {
+  display: inline-block;
+  height: 1px !important;
+  position: relative;
+  border-radius: 4px;
+  background-color: #134265;
+  border: none;
+  color: #ffffff;
+  text-align: center;
+  vertical-align: middle;
+  font-size: 1.5rem;
+  padding: 20px;
+  width: 50%;
+  transition: all 0.5s;
+  cursor: pointer;
+  margin: 0 auto;
+  left: 25%;
+}
+
+.button span {
+  position: relative;
+  top: -11px;
+  transition: 0.5s;
+}
+
+.button span:after {
+  content: "\00bb";
+  position: absolute;
+  opacity: 0;
+  top: 0;
+  right: -20px;
+  transition: 0.5s;
+}
+
+.button:hover span {
+  padding-right: 25px;
+}
+
+.button:hover span:after {
+  opacity: 1;
+  right: 0;
+}
+
+td{
+  padding: 10px;
+  text-align: center;
+}
+thead tr{
+  font-size: 1rem;
+  font-weight: bold;
+}
+.vessel-container table tbody td button {
+  padding: 3px;
+  background-color: transparent;
+}
+@media screen and (max-width: 920px) {
+.vessel-container {
+  width: 100%;
+  grid-template-columns: 1fr;
+  padding: 0 0.5rem;
+}
+}

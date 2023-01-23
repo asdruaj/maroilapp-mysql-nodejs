@@ -45,23 +45,23 @@
             </thead>
             <tbody id="equipment-body">
               <% for( let i = 0; i < equipment.length; i++ ) { %>
-              <tr tabindex="0">
-                <td><%= equipment[i].id %></td>
-                <td><%= equipment[i].equipmentName %></td>
-                <td>
+                <tr tabindex="0">
+                  <td><%= equipment[i].id %></td>
+                  <td><%= equipment[i].equipmentName %></td>
+                  <td>
                   <button class="bEdit editEquipment" type="submit">
                     <i class="material-icons edit">edit</i>
                   </button>
 
                   <form
-                    method="post"
-                    action="/equipment/deleteEquipment/<%=equipment[i].id%>"
-                    class="deleteEquipmentForm"
+                  method="post"
+                  action="/equipment/deleteEquipment/<%=equipment[i].id%>"
+                  class="deleteEquipmentForm"
                   >
-                    <button type="submit">
-                      <i class="material-icons delete">delete</i>
-                    </button>
-                  </form>
+                  <button type="submit">
+                    <i class="material-icons delete">delete</i>
+                  </button>
+                </form>
                 </td>
               </tr>
               <% } %>
@@ -71,9 +71,9 @@
         <div class="middle-table">
           <div class="table-controls">
             <form
-              method="post"
-              action="/equipment/specialty"
-              id="specialtyForm"
+            method="post"
+            action="/equipment/specialty"
+            id="specialtyForm"
             >
               <input type="text" name="specialtyName" required />
               <input

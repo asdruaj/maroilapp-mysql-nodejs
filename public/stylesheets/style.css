@@ -8,6 +8,7 @@
 
   --dt-status-available-color: greenyellow;
   --dtstatus-closed-color: lightsalmon;
+  --dtstatus-pending-color: rgb(245, 198, 68);
 
   --dt-padding: 12px;
   --dt-padding-s: 6px;
@@ -63,8 +64,10 @@ body {
   background-color: var(--dt-background-color-container);
   border-radius: var(--dt-border-radius);
   color: var(--dt-text-color);
-  max-width: 80%;
+  max-width: 90%;
   min-width: 620px;
+  position: relative  ;
+  left: 5%;
   margin: 1.8rem auto;
   font-size: 12px;
   box-shadow: 5px 5px 30px black;
@@ -233,9 +236,13 @@ tr.selected td {
 .datatable-container .datatable tbody tr .Cerrado {
   color: var(--dtstatus-closed-color);
 }
+.datatable-container .datatable tbody tr .Pendiente {
+  color: var(--dtstatus-pending-color);
+}
 
 .datatable-container .datatable tbody tr .Abierto::before,
-.datatable-container .datatable tbody tr .Cerrado::before {
+.datatable-container .datatable tbody tr .Cerrado::before,
+.datatable-container .datatable tbody tr .Pendiente::before {
   content: "";
   display: inline-block;
   width: 10px;
@@ -251,6 +258,10 @@ tr.selected td {
 
 .datatable-container .datatable tbody tr .Cerrado::before {
   background-color: var(--dtstatus-closed-color);
+}
+
+.datatable-container .datatable tbody tr .Pendiente::before {
+  background-color: var(--dtstatus-pending-color);
 }
 .bEdit {
   background-color: transparent;

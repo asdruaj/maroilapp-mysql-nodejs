@@ -15,6 +15,7 @@ var indexRouter = require("./routes/index");
 var usersRouter = require("./routes/users");
 var reportsRouter = require("./routes/reports");
 var equipmentRouter = require("./routes/equipment");
+var vesselRouter = require("./routes/vessel");
 
 var app = express();
 var server = require('http').Server(app);
@@ -63,6 +64,7 @@ app.use("/", indexRouter);
 app.use("/users", usersRouter);
 app.use("/reports", reportsRouter);
 app.use("/equipment", equipmentRouter);
+app.use("/vessel", vesselRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

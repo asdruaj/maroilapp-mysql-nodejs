@@ -16,13 +16,16 @@ module.exports = {
   },
   create: async function (req, res) {
     try {
-      await equipment.getEquipment(cn, async function (err, data) {
-        await equipment.getSpecialty(cn, async (err, data2) => {
-          await equipment.getFailure(cn, async (err, data3) => {
-            await res.render("createReport.ejs", {
-              equipment: data,
-              specialty: data2,
-              failure: data3,
+      await equipment.getVessel(cn, async function (err, data4) {
+        await equipment.getEquipment(cn, async function (err, data) {
+          await equipment.getSpecialty(cn, async (err, data2) => {
+            await equipment.getFailure(cn, async (err, data3) => {
+              await res.render("createReport.ejs", {
+                equipment: data,
+                specialty: data2,
+                failure: data3,
+                vessel: data4
+              });
             });
           });
         });
@@ -32,6 +35,7 @@ module.exports = {
   save: async function (req, res) {
     try {
       await report.insertReport(cn, req.body, async function (err, fields) {
+        console.log(req.body)
         await report.insertRecentUpdates(
           cn,
           {
@@ -77,6 +81,7 @@ module.exports = {
   edit: async function (req, res) {
     try {
       await report.returnIdData(cn, req.params.id, async function (err, data) {
+        await equipment.getVessel(cn, async function (err, data5) {
         await equipment.getEquipment(cn, async function (err, data2) {
           await equipment.getSpecialty(cn, async (err, data3) => {
             await equipment.getFailure(cn, async (err, data4) => {
@@ -85,10 +90,12 @@ module.exports = {
                 equipment: data2,
                 specialty: data3,
                 failure: data4,
+                vessel: data5
               });
             });
           });
         });
+      });
       });
     } catch (error) {}
   },
